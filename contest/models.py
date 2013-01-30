@@ -8,6 +8,9 @@ class Olympiad(models.Model):
     start = models.DateTimeField(blank=True, null=True)
     stop = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return title
+
 class Contest(models.Model):
     title = models.CharField(max_length=1000)
     olympiad = models.ForeignKey(Olympiad)
