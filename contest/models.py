@@ -3,8 +3,14 @@ from django.contrib.auth.models import Group, User
 from django.db.models.signals import post_save
 # Create your models here.
 
+class Olympiad(models.Model):
+    title = models.CharField(max_length=1000)
+    start = models.DateTimeField(blank=True, null=True)
+    stop = models.DateTimeField(blank=True, null=True)
+
 class Contest(models.Model):
     title = models.CharField(max_length=1000)
+    olympiad = models.ForeignKey(Olympiad)
     start = models.DateTimeField()
     stop = models.DateTimeField()
     admin_group = models.ForeignKey(Group, blank=True, null=True, related_name='admin_contests')
