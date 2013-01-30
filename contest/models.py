@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import Group, User
 from django.db.models.signals import post_save
-# Create your models here.
+from django.contrib.auth.models import AbstractUser
+
+class Organizer(AbstractUser):
+    second_name = models.CharField(max_length=50, blank=True)
+    place = models.CharField(max_length=1000)
+    mobile = models.CharField(max_length=50, blank=True)
+    contacts = models.CharField(max_length=50, blank=True)
 
 class Olympiad(models.Model):
     title = models.CharField(max_length=1000)

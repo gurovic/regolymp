@@ -3,3 +3,4 @@ from django.contrib import admin
 
 admin.site.register(Contest)
 admin.site.register(Olympiad)
+admin.site.register(Organizer)
