@@ -9,7 +9,7 @@ class Olympiad(models.Model):
     stop = models.DateTimeField(blank=True, null=True)
 
     def __str__(self):
-        return title
+        return self.title
 
 class Contest(models.Model):
     title = models.CharField(max_length=1000)
@@ -18,6 +18,9 @@ class Contest(models.Model):
     stop = models.DateTimeField()
     admin_group = models.ForeignKey(Group, blank=True, null=True, related_name='admin_contests')
     participants_group = models.ForeignKey(Group, blank=True, null=True, related_name='contests')
+
+    def __str__(self):
+        return '{}: {}'.format(self.olympiad, self.title)
 
 def create_group(sender, instance, *args, **kwargs):
         if kwargs['created']:
