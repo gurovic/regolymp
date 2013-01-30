@@ -7,6 +7,7 @@ from django.utils import timezone
 
 
 def create_user(request):
+    is_success = False
     if request.method == 'POST':
         form = OrganizerCreateForm(request.POST)
         if form.is_valid():
@@ -15,15 +16,23 @@ def create_user(request):
                 password = form.cleaned_data['password1']
                 email = form.cleaned_data['email']
                 
-                org = createuser(Organizer, login, email, password)
-          
+                createuser(login, email, password, 
+                                 first_name = form.cleaned_data['first_name'],
+                                 second_name = form.cleaned_data['second_name'],
+                                 last_name = form.cleaned_data['last_name'],
+                                 place = form.cleaned_data['place'],
+                                 contacts = form.cleaned_data['contacts'],
+                                 mobile = form.cleaned_data['mobile'],
+                                )
+                is_success = True
     else:
         form = OrganizerCreateForm()
     return render_to_response('register.html', {
         'form': form,
+        'is_success': is_success,
     }, RequestContext(request))
 
-def createuser(self, username, email=None, password=None, **extra_fields):
+def createuser(username, email=None, password=None, **extra_fields):
         now = timezone.now()
         if not username:
             raise ValueError('The given username must be set')

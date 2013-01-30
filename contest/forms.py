@@ -6,7 +6,7 @@ class OrganizerCreateForm(UserCreationForm):
     class Meta:
         model = Organizer
         fields = ['first_name', 'second_name', 'last_name', 
-                  'email', 'mobile', 'contacts', 'username']
+                  'place', 'email', 'mobile', 'contacts', 'username']
 
     def clean_username(self):
         username = self.cleaned_data["username"]

@@ -4,10 +4,11 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import AbstractUser
 
 class Organizer(AbstractUser):
-    second_name = models.CharField(max_length=50, blank=True)
-    place = models.CharField(max_length=1000)
-    mobile = models.CharField(max_length=50, blank=True)
-    contacts = models.CharField(max_length=50, blank=True)
+    second_name = models.CharField("Отчество", max_length=50, blank=True)
+    place = models.CharField("Место проведения олимпиад", help_text="Регион, город, школа, ...", max_length=1000, blank=True)
+    mobile = models.CharField("Мобильный телефон", help_text="для оперативной связи", max_length=50, blank=True)
+    contacts = models.CharField("Другие контакты", help_text="используемые вами средства связи: ICQ, jabber, vkontakte, Skype, ...", 
+                                max_length=50, blank=True)
 
     objects = BaseUserManager()
 
