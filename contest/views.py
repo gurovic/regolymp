@@ -5,6 +5,8 @@ from .forms import OrganizerCreateForm
 from django.contrib.auth.models import UserManager
 from django.utils import timezone
 
+def main(request):
+    return render_to_response('main.html')
 
 def create_user(request):
     is_success = False
