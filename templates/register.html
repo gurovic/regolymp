@@ -1,0 +1,8 @@
+{% if is_success %}
+Поздравляем! Вы успешно зарегистрированы!
+{% else %}
+<form method='POST' action='{% url 'register' %}'>{% csrf_token %}
+    {{ form.as_p }}
+    <input type='submit' value='Зарегистрироваться' name='register'>
+</form>
+{% endif %}
